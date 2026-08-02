@@ -21,7 +21,7 @@ const BACKEND_URL = "https://script.google.com/macros/s/AKfycbz-qY4bLI2FAGBmGn92
 // Key SECRET here or anywhere in this website's code — that one must
 // stay private and is not needed for this basic checkout.
 // Leave blank ("") to keep using the manual UPI + reference-number flow instead.
-const RAZORPAY_KEY_ID = "";
+const RAZORPAY_KEY_ID = "rzp_live_TKo5zpigW9n4Bi";
 
 const BUSINESS = {
   name: "LAXMI AGRO PRODUCTS",
