@@ -12,7 +12,7 @@
 // /exec) HERE, then push this file to GitHub so it ships to everyone.
 // See /apps-script/Code.gs for how to get this URL. Leave blank ("")
 // to run with no shared backend (each browser stays independent).
-const BACKEND_URL = "";
+const BACKEND_URL = "https://script.google.com/macros/s/AKfycbz-qY4bLI2FAGBmGn92idCSxeeU3SZkmIiJZIlngBclYxSHgUaBPwNyjb45cYXvG2D3/exec";
 
 // IMPORTANT — Razorpay Key ID (safe to be public, this is NOT the secret key).
 // Get it from: Razorpay Dashboard → Settings → API Keys → Generate Key.
