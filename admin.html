@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — LAXMI AGRO PRODUCTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Login -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="brand-mark" style="margin:0 auto 14px;">LA</div>
+    <h2>Admin Login</h2>
+    <p style="color:var(--espresso-soft);font-size:.9rem;margin-bottom:20px;">LAXMI AGRO PRODUCTS management panel</p>
+    <div class="form-row" style="text-align:left;">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="Enter admin password">
+    </div>
+    <button class="pill-btn" style="width:100%;" id="loginBtn">Login</button>
+    <p id="loginError" style="color:var(--rust);font-size:.82rem;margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- Admin shell -->
+<div class="admin-shell" id="adminShell" style="display:none;">
+  <div class="admin-side">
+    <h1>LAXMI AGRO</h1>
+    <div class="sub">Admin Panel</div>
+    <button class="admin-nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="admin-nav-btn" data-tab="products">🌾 Products</button>
+    <button class="admin-nav-btn" data-tab="orders">📦 Orders</button>
+    <button class="admin-nav-btn" data-tab="customers">👥 Customers</button>
+    <button class="admin-nav-btn" data-tab="settings">⚙️ Settings</button>
+    <button class="admin-nav-btn" style="margin-top:20px;color:var(--gold-soft);" id="viewStoreBtn">↗ View Store</button>
+    <button class="admin-nav-btn" id="logoutBtn">🚪 Logout</button>
+  </div>
+
+  <div class="admin-main">
+    <!-- Dashboard -->
+    <section id="tab-dashboard">
+      <div class="admin-topbar"><h2 style="margin:0;">Dashboard</h2></div>
+      <div class="stat-row" id="statRow"></div>
+      <h3>Recent Orders</h3>
+      <div id="recentOrdersTable"></div>
+    </section>
+
+    <!-- Products -->
+    <section id="tab-products" style="display:none;">
+      <div class="admin-topbar">
+        <h2 style="margin:0;">Products</h2>
+        <button class="pill-btn" id="addProductBtn">+ Add Variety</button>
+      </div>
+      <p style="color:var(--espresso-soft);font-size:.88rem;margin-top:-8px;">
+        Change the price per kg any time — it updates instantly on the store for every pack size.
+        To use real photos, paste an image URL (upload your photo to Google Drive/Imgur and share the direct link).
+      </p>
+      <div class="prod-edit-grid" id="prodEditGrid"></div>
+    </section>
+
+    <!-- Orders -->
+    <section id="tab-orders" style="display:none;">
+      <div class="admin-topbar"><h2 style="margin:0;">All Orders</h2><button class="icon-btn" id="refreshOrdersBtn">🔄 Refresh</button></div>
+      <div id="ordersTableWrap"></div>
+    </section>
+
+    <!-- Customers -->
+    <section id="tab-customers" style="display:none;">
+      <div class="admin-topbar"><h2 style="margin:0;">Registered Customers</h2><button class="icon-btn" id="refreshUsersBtn">🔄 Refresh</button></div>
+      <p style="color:var(--espresso-soft);font-size:.88rem;margin-top:-8px;">
+        Everyone who has created an account on the website (Login / Sign Up). Passwords are never shown — only stored as secure hashes.
+      </p>
+      <div id="usersTableWrap"></div>
+    </section>
+
+    <!-- Settings -->
+    <section id="tab-settings" style="display:none;">
+      <div class="admin-topbar"><h2 style="margin:0;">Settings</h2></div>
+      <div class="prod-edit-card" style="max-width:520px;">
+        <h3 style="margin-top:0;">Shared Backend (Orders + Customers + Products)</h3>
+        <p style="font-size:.82rem;color:var(--espresso-soft);">
+          This connects every visitor's device to the same Google Sheet. It's set in the site's code
+          (<code>js/data.js</code> → <code>BACKEND_URL</code>) rather than here, so that it's identical for
+          every visitor — a value only saved in this Settings screen would only ever apply to your own browser,
+          which is why changes weren't showing up on other devices before.
+        </p>
+        <div class="field-mini">
+          <label>Currently configured URL</label>
+          <div id="backendStatusBox" class="mono" style="padding:8px 10px;background:var(--cream);border-radius:8px;font-size:.8rem;word-break:break-all;"></div>
+        </div>
+        <p style="font-size:.8rem;color:var(--espresso-soft);">
+          To set or change it: open <code>js/data.js</code>, edit the <code>BACKEND_URL</code> constant near the
+          top, then push the change to GitHub so Vercel redeploys. See <code>/apps-script/Code.gs</code> and the README for full setup steps.
+        </p>
+      </div>
+      <div class="prod-edit-card" style="max-width:520px;margin-top:20px;">
+        <h3 style="margin-top:0;">Business Info</h3>
+        <div class="field-mini"><label>Business Name</label><input id="setName"></div>
+        <div class="field-mini"><label>Village</label><input id="setVillage"></div>
+        <div class="field-mini"><label>Mandal</label><input id="setMandal"></div>
+        <div class="field-mini"><label>District</label><input id="setDistrict"></div>
+        <div class="field-mini"><label>Customer Care Phone 1</label><input id="setPhone1"></div>
+        <div class="field-mini"><label>Customer Care Phone 2 (Payment Number)</label><input id="setPhone2"></div>
+        <div class="field-mini"><label>UPI ID (for payment link — e.g. 9392530367@ybl)</label><input id="setUpi"></div>
+        <button class="pill-btn" id="saveSettingsBtn">Save Settings</button>
+      </div>
+      <div class="prod-edit-card" style="max-width:520px;margin-top:20px;">
+        <h3 style="margin-top:0;">Change Admin Password</h3>
+        <div class="field-mini"><label>New Password</label><input id="newPass" type="password"></div>
+        <button class="pill-btn" id="savePassBtn">Update Password</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Order detail / print modal -->
+<div class="modal-overlay" id="orderModalOverlay">
+  <div class="modal" style="max-width:640px;">
+    <button class="close-x" id="closeOrderModal" style="float:right;">✕</button>
+    <div id="orderModalBody"></div>
+  </div>
+</div>
+
+<!-- Hidden print area for shipping label -->
+<div id="printArea" style="position:absolute;left:-9999px;top:-9999px;"></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

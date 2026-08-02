@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAXMI AGRO PRODUCTS — Pure Jowar Atta</title>
+<meta name="description" content="Buy pure stone-ground Jowar Atta online — White, Yellow, Organic, Red & Multigrain varieties. Direct from Ranjini Village, Kubeer Mandal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">LA</div>
+      <div class="brand-text">
+        <h1>LAXMI AGRO PRODUCTS</h1>
+        <span>Ranjini Village · Kubeer Mandal</span>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a href="#shop" class="nav-link active" data-view="shop">Shop</a>
+      <a href="#track" class="nav-link" data-view="track">Track Order</a>
+      <a href="#contact" class="nav-link" data-view="contact">Contact</a>
+      <span id="accountNavSlot"></span>
+    </nav>
+    <button class="cart-btn" id="openCartBtn">Cart <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<div class="rate-board">
+  <div class="container">
+    <div class="rate-track" id="rateTrack"><!-- filled by JS, duplicated for seamless scroll --></div>
+  </div>
+</div>
+
+<main id="viewShop">
+  <div class="container">
+    <section class="hero">
+      <div>
+        <div class="hero-badges">
+          <span class="badge">Stone-Ground</span>
+          <span class="badge">100% Natural</span>
+          <span class="badge">Village Direct</span>
+        </div>
+        <h2>Real <span class="accent">Jowar Atta</span>,<br>Milled the Way Amma Made It</h2>
+        <p class="lede">Five varieties of sorghum flour, freshly ground and packed to order from our mill in Ranjini Village, Kubeer Mandal. No middlemen, no mixing — just jowar.</p>
+        <button class="pill-btn" onclick="document.getElementById('productGrid').scrollIntoView({behavior:'smooth'})">Shop the Varieties</button>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F1CE6B"/>
+              <stop offset="100%" stop-color="#D9A441"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="420" fill="url(#skyGrad)"/>
+          <!-- distant field texture -->
+          <path d="M0 300 Q120 270 240 300 T480 300 V420 H0 Z" fill="#3B5D3E" opacity="0.9"/>
+          <path d="M0 320 Q120 295 240 320 T480 320 V420 H0 Z" fill="#2F4A31"/>
+          <!-- jute sack -->
+          <g>
+            <path d="M150 190 Q150 150 195 145 H265 Q305 150 305 190 V330 Q305 355 275 358 H180 Q150 355 150 330 Z" fill="#B98A4E"/>
+            <path d="M150 190 Q150 150 195 145 H265 Q305 150 305 190 V210 H150 Z" fill="#A6763B"/>
+            <line x1="160" y1="220" x2="296" y2="220" stroke="#8B5A15" stroke-width="3" opacity=".5"/>
+            <line x1="160" y1="250" x2="296" y2="250" stroke="#8B5A15" stroke-width="3" opacity=".5"/>
+            <line x1="160" y1="280" x2="296" y2="280" stroke="#8B5A15" stroke-width="3" opacity=".5"/>
+            <line x1="160" y1="310" x2="296" y2="310" stroke="#8B5A15" stroke-width="3" opacity=".5"/>
+            <!-- tied neck -->
+            <path d="M195 145 Q230 120 265 145" fill="none" stroke="#7C5225" stroke-width="10" stroke-linecap="round"/>
+            <ellipse cx="230" cy="140" rx="10" ry="14" fill="#7C5225"/>
+          </g>
+          <!-- spilled grain + bowl -->
+          <ellipse cx="130" cy="368" rx="70" ry="16" fill="#7C3220" opacity=".18"/>
+          <path d="M75 345 Q130 385 190 345 L185 358 Q130 392 80 358 Z" fill="#FFFBF1"/>
+          <ellipse cx="132" cy="346" rx="58" ry="14" fill="#EDE3C8"/>
+          <g fill="#8B5A15">
+            <circle cx="205" cy="335" r="4"/>
+            <circle cx="218" cy="345" r="4"/>
+            <circle cx="196" cy="352" r="3.5"/>
+            <circle cx="228" cy="330" r="3.5"/>
+            <circle cx="240" cy="342" r="4"/>
+            <circle cx="210" cy="320" r="3"/>
+          </g>
+          <!-- rotis stack -->
+          <g>
+            <ellipse cx="365" cy="330" rx="52" ry="13" fill="#E7B199"/>
+            <ellipse cx="365" cy="314" rx="52" ry="13" fill="#F1CE6B"/>
+            <ellipse cx="365" cy="298" rx="52" ry="13" fill="#EDE3C8"/>
+          </g>
+          <!-- grain ears floating -->
+          <g fill="#A2432B" opacity=".85">
+            <ellipse cx="90" cy="110" rx="6" ry="16" transform="rotate(20 90 110)"/>
+            <ellipse cx="102" cy="130" rx="6" ry="16" transform="rotate(20 102 130)"/>
+            <ellipse cx="400" cy="90" rx="6" ry="16" transform="rotate(-15 400 90)"/>
+            <ellipse cx="412" cy="112" rx="6" ry="16" transform="rotate(-15 412 112)"/>
+          </g>
+        </svg>
+        <div class="grain-tag">जोवार आटा · Since the family mill</div>
+      </div>
+    </section>
+
+    <div id="shopGateArea" style="display:none;">
+      <div class="track-panel" style="text-align:center;max-width:520px;">
+        <h2 style="font-size:1.4rem;">🔒 Create a Free Account to Shop</h2>
+        <p style="color:var(--espresso-soft);">To view our Jowar Atta varieties and prices, please log in or create a free account first — it only takes a minute.</p>
+        <button class="pill-btn" id="gateLoginBtn" style="width:100%;margin-top:10px;">Login</button>
+        <button class="pill-btn ghost" id="gateSignupBtn" style="width:100%;margin-top:10px;">Create Account</button>
+      </div>
+    </div>
+
+    <div id="shopContentArea">
+      <div class="search-row">
+        <div class="search-box">
+          <span>🔍</span>
+          <input id="searchInput" type="text" placeholder="Search a variety — white, organic, multigrain...">
+        </div>
+      </div>
+
+      <div class="section-title" id="productGrid">
+        <h2 style="font-size:1.5rem;margin:0;">Our Jowar Atta Varieties</h2>
+        <p id="resultCount"></p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</main>
+
+<main id="viewTrack" style="display:none;">
+  <div class="container">
+    <div class="section-title" style="margin-top:40px;">
+      <h2 style="font-size:1.5rem;margin:0;">Track Your Order</h2>
+    </div>
+    <div class="track-panel">
+      <div class="form-row">
+        <label>Order ID or Phone Number</label>
+        <input id="trackInput" type="text" placeholder="e.g. LAP260726123 or 9876543210">
+      </div>
+      <button class="pill-btn" id="trackBtn">Track Order</button>
+      <div id="trackResult"></div>
+    </div>
+  </div>
+</main>
+
+<main id="viewContact" style="display:none;">
+  <div class="container">
+    <div class="section-title" style="margin-top:40px;">
+      <h2 style="font-size:1.5rem;margin:0;">Contact Us</h2>
+    </div>
+    <div class="track-panel" style="text-align:left;">
+      <p><b>LAXMI AGRO PRODUCTS</b></p>
+      <p>Ranjini Village, Kubeer Mandal</p>
+      <p>Customer Care: <a href="tel:8096045061">8096045061</a> / <a href="tel:9392530367">9392530367</a></p>
+      <p>We're happy to help with orders, bulk enquiries, and delivery questions.</p>
+    </div>
+  </div>
+</main>
+
+<!-- Cart Drawer -->
+<div class="overlay" id="cartOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <h3 style="margin:0;">Your Cart</h3>
+      <button class="close-x" id="closeCart">✕</button>
+    </div>
+    <div id="cartLines"></div>
+    <div id="cartFooter"></div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal">
+    <button class="close-x" id="closeCheckout" style="float:right;">✕</button>
+    <div id="checkoutBody"></div>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="container foot-grid">
+    <div>
+      <h4>LAXMI AGRO PRODUCTS</h4>
+      <p>Pure, stone-ground Jowar Atta — direct from our mill to your kitchen.</p>
+      <p>📍 Ranjini Village, Kubeer Mandal</p>
+    </div>
+    <div>
+      <h4>Customer Care</h4>
+      <p><a href="tel:8096045061">8096045061</a></p>
+      <p><a href="tel:9392530367">9392530367</a></p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p><a href="#track" class="nav-link" data-view="track">Track Order</a></p>
+      <p><a href="admin.html">Admin Login</a></p>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>© <span id="year"></span> Laxmi Agro Products. All rights reserved.</span>
+    <span>Made for the family business, with pride.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

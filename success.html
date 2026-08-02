@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Successful — LAXMI AGRO PRODUCTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">LA</div>
+      <div class="brand-text">
+        <h1>LAXMI AGRO PRODUCTS</h1>
+        <span>Ranjini Village · Kubeer Mandal</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<div class="success-wrap">
+  <div class="check-circle">✓</div>
+  <h2>Order Successful!</h2>
+  <p style="color:var(--espresso-soft);">Thank you for your order. We've received your payment confirmation and will verify it shortly before packing your jowar atta.</p>
+  <div class="order-id-box" id="orderIdBox">Loading...</div>
+  <div id="orderDetails" style="text-align:left;"></div>
+  <p style="margin-top:26px;">
+    <a href="index.html" class="pill-btn" style="display:inline-block;text-decoration:none;">Continue Shopping</a>
+  </p>
+  <p style="font-size:.85rem;color:var(--espresso-soft);margin-top:10px;">
+    Save your Order ID to track your order anytime, or call us on
+    <a href="tel:8096045061">8096045061</a> / <a href="tel:9392530367">9392530367</a>.
+  </p>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script>
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  document.getElementById("orderIdBox").textContent = "Looking up your order...";
+  const order = id ? await Store.getOrder(id) : null;
+  if (order) {
+    document.getElementById("orderIdBox").textContent = "Order ID: " + order.id;
+    const items = order.items.map(it =>
+      `<div class="row" style="display:flex;justify-content:space-between;padding:5px 0;font-size:.9rem;">
+        <span>${it.name} (${it.weightKg}kg × ${it.qty})</span><span>${formatINR(it.subtotal)}</span>
+      </div>`
+    ).join("");
+    document.getElementById("orderDetails").innerHTML = `
+      <div class="order-items-list">
+        ${items}
+        <div class="row" style="display:flex;justify-content:space-between;font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:6px;">
+          <span>Total</span><span>${formatINR(order.total)}</span>
+        </div>
+      </div>
+      <p style="margin-top:16px;font-size:.85rem;color:var(--espresso-soft);">
+        Delivering to: ${order.customer.name}, ${order.customer.address}, ${order.customer.village},
+        ${order.customer.mandal}, ${order.customer.district} - ${order.customer.pincode}
+      </p>
+      ${order.utr ? `<p style="font-size:.85rem;color:var(--espresso-soft);">Payment Ref (UTR): <b class="mono">${order.utr}</b></p>` : ""}`;
+  } else {
+    document.getElementById("orderIdBox").textContent = "Order not found";
+  }
+})();
+</script>
+</body>
+</html>
